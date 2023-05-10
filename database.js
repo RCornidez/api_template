@@ -9,5 +9,5 @@ module.exports = {
 	  password: 'password',
 	  database: 'results',
 	  port: 5432,
-		}),
+	}),
 }
