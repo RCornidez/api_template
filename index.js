@@ -14,7 +14,7 @@ app.use(express.json())
 const allowedOrigins = ['https://www.cornidez.com', 'https://cornidez.com'];
 app.use(cors({origin: allowedOrigins}));
 
-// use this for troubleshooting if your domains are causing issues. This allows requests to come from anywhere.
+// use this for troubleshooting if your domains are causing issues. This allows requests to come from anywhere. You will need to comment out the cors statement above first.
 //app.use(cors({origin: '*'}));
 
 //ROUTES
@@ -28,11 +28,11 @@ app.get('/results', (req, res) => {
                                 .then(data => {
                                 client.release()
                                 res.send(data.rows)
-                        })
+				})
                 .catch(error => {
-                        //client.release()
+                        client.release()
                         console.log(error)
-                        })
+				})
         })
 });
 
@@ -41,19 +41,14 @@ app.post('/new_vote', (req, res) => {
         pool
     .connect()
     .then(client => {
-      return client
-        .query(`
-        insert into results
-                (user_id, color)
-        values
-                (\'${req.body.user_id}\',\'${req.body.color}\')`
-                )
-                .then(data => {
-              client.release()
-                res.status(200)
-      })
+		return client
+			.query(`insert into results (user_id, color) values (\'${req.body.user_id}\',\'${req.body.color}\')`)
+			.then(data => {
+				client.release()
+				res.status(200)
+      		})
     .catch(error => {
-            //client.release()
+            client.release()
             console.log(error)
       })
     })
