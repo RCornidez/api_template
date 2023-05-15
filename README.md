@@ -1,40 +1,39 @@
-#How to run on Ubuntu Linux:
+# How to run on Ubuntu Linux:
 
-##install node (using apt or node version manager)
-###Using apt:
+## install node (using apt-get or [node version manager](https://github.com/nvm-sh/nvm#installing-and-updating))
+
 ```
-sudo apt install nodejs
+sudo apt-get install nodejs
 ```
-###Using NVM
-refer to the [NVM installation guide](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-##clone the project from github:
+## Clone the project from github:
 
-###https version:
 ```
 git clone https://github.com/RCornidez/api_template.git
 ```
-###ssh version:
+OR
+
 ```
 git clone git@github.com:RCornidez/api_template.git
 ```
 
-###navigate within the folder and run the following:
+### Navigate within the folder and run the following:
 ```
 npm install
 ```
-###test that the application runs
+### Test that the application runs
 ```
 node index.js
 ```
 
 
-##Make your API into a service using systemd (linux):
+## Make your API into a service using systemd (linux) by creating a file called "api.service" in the system folder:
+
 ```	
 sudo vi /etc/systemd/system/api.service
 ```
 
-###write the following (update your filepaths and user info, use "whereis" to find node filepath):
+### Write the following (update your filepaths and user info, use "whereis" to find node filepath):
 
 ```
 [Unit]
@@ -50,7 +49,7 @@ User=root
 WantedBy=multi-user.target
 ```
 		
-###Save and exit, then enable the service:
+### Save and exit, then enable the service:
 
 ```
 sudo systemctl daemon-reload
@@ -58,12 +57,12 @@ sudo systemctl enable api.service
 sudo systemctl start api.service
 ```
 
-###If you make changes to the API files, you will need to restart the service:
+### If you make changes to the API files, you will need to restart the service for the new changes to take effect to take effect:
 ```
 sudo systemctl restart api.service
 ```
 
-###Be sure to check the status
+### Be sure to check the status
 ```
 sudo systemctl status api.service
 ```
