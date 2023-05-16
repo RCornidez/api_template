@@ -1,7 +1,6 @@
 # How to run on Ubuntu Linux:
 
-## install node (using apt-get or [node version manager](https://github.com/nvm-sh/nvm#installing-and-updating))
-
+## install node (using apt-get)
 ```
 sudo apt-get install nodejs
 ```
