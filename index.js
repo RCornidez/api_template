@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json())
 
 //allows requests to come from specific domains
-const allowedOrigins = ['https://www.cornidez.com', 'https://cornidez.com'];
+const allowedOrigins = ['https://www.api1.cornidez.com', 'https://api1.cornidez.com'];
 app.use(cors({origin: allowedOrigins}));
 
 // use this for troubleshooting if your domains are causing issues. This allows requests to come from anywhere. You will need to comment out the cors statement above first.
