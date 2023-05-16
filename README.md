@@ -76,7 +76,7 @@ server {
         listen 443 ssl;
         ssl_certificate /etc/nginx/certificates/color.cornidez.com.pem;
         ssl_certificate_key /etc/nginx/certificates/color.cornidez.com.key;
-        server_name api.color.cornidez.com;
+        server_name api1.cornidez.com;
 
         location / {
                 proxy_pass http://localhost:3000;
