@@ -56,6 +56,8 @@ sudo systemctl enable api.service
 sudo systemctl start api.service
 ```
 
+
+
 ### If you make changes to the API files, you will need to restart the service for the new changes to take effect to take effect:
 ```
 sudo systemctl restart api.service
@@ -66,3 +68,21 @@ sudo systemctl restart api.service
 sudo systemctl status api.service
 ```
 
+## Setup Nginx to serve API:
+
+Modify /etc/nginx/sites-available/default to include:
+```
+server {
+        listen 443 ssl;
+        ssl_certificate /etc/nginx/certificates/color.cornidez.com.pem;
+        ssl_certificate_key /etc/nginx/certificates/color.cornidez.com.key;
+        server_name api.color.cornidez.com;
+
+        location / {
+                proxy_pass http://localhost:3000;
+        }
+
+        access_log /var/log/nginx/access.log;
+        error_log  /var/log/nginx/error_log  crit;
+}
+```
